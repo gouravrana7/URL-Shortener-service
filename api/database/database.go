@@ -14,4 +14,5 @@ func CreateClient(dbNo int) *redis.CLient {
 		Password: os.Getenv("DB_PASS")
 		DB: dbNo, 
 	})
+	return rdb
 }
