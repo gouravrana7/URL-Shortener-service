@@ -2,6 +2,8 @@ package routes
 
 import (
 	"time"
+
+	"github.com/anshugupta673/URL-Shortener-service/api/helpers"
 )
 
 type request struct {
@@ -25,7 +27,7 @@ func ShortenURL(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "cannot parse JSON"})
 	}
 
-	//implement rate limiting
+	//implement rate limiting, here we will check the IP of the user who's calling the fun we check the IP search it in the database
 
 	//check if the input sent by the user if an actual URL
 	if !govalidator.IsURL(body.URL) {
@@ -33,7 +35,7 @@ func ShortenURL(c *fiber.Ctx) error {
 	}
 
 	//check for domain error
-	if !helpers.RemoveDomainError(body.URL){
+	if !helpers.RemoveDomainError(body.URL) {
 		return c.Status(fiber.StatusServiceUnavaliable).JSON()
 	}
 
