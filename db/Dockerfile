@@ -1,4 +1,4 @@
 FROM redis:alpine
-FROM BASE_IMAGE bionic64
+FROM BASE_IMAGE bionic128
 
 EXPOSE 6379
